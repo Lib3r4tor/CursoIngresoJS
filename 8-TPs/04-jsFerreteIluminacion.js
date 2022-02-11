@@ -10,10 +10,101 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  */
 function CalcularPrecio () 
 {
+    //Variables
  	var lamparitasCantidad;
     var lamparitasPrecio;
     var descuento;
-    var argentinaLuz;
-    var felipeLamparas;
+    var porcentaje;
+    var marca;
+    var lamparitasPrecioCantidad;
+    var lamparitasPrecioAplicado;
 
-}
+
+    // Operaciones
+        //Valor de las lamparitas
+        lamparitasPrecio = 35;
+        //Cantidad de lamparitas ingresadas
+        lamparitasCantidad = document.getElementById("txtIdCantidad").value;
+        lamparitasCantidad = parseInt(lamparitasCantidad);
+        //Declaracion de la marca a seleccionar
+        marca = document.getElementById("Marca").value;
+        //Valor de la cantidad de lamparitas ingresadas
+        lamparitasPrecioCantidad = lamparitasCantidad * lamparitasPrecio;
+        //Porcentaje
+        porcentaje = 0;
+        //Precio neto de lamparitas
+        lamparitasPrecioAplicado = lamparitasPrecioCantidad;
+    //if y else de los ejercicios
+
+        if(lamparitasCantidad >=6 )
+        {  
+        porcentaje = 50;    
+        }
+        else 
+        {
+            if(lamparitasCantidad == 5)
+            {
+                if (marca == "ArgentinaLuz")
+                {
+                    porcentaje = 40;
+                }
+                else
+                {
+                    porcentaje = 30;
+                }
+            }
+            else
+            {
+                if(lamparitasCantidad == 4)
+                {
+                    if(marca == "ArgentinaLuz" || marca == "FelipeLamparas")
+                    {
+                        porcentaje = 25;
+                    }
+                    else
+                    {
+                        porcentaje = 20;
+                    }
+                }
+                else
+                {
+                    if(lamparitasCantidad == 3)
+                    {
+                        if(marca == "ArgentinaLuz")
+                        {
+                            porcentaje = 15;
+                        }
+                        else
+                        {
+                            if(marca == "FelipeLamparas")
+                            {
+                                porcentaje = 10
+                            }
+                            else
+                            {
+                                porcentaje = 5
+                            }
+                        }
+                    }          
+                }
+            }                         
+        }       
+        if(lamparitasPrecioAplicado>120)
+        {
+            porcentaje = 10;
+            descuento = lamparitasPrecioCantidad * porcentaje / 100;
+            lamparitasPrecioAplicado + descuento;
+            alert("Usted pago " + lamparitasPrecioAplicado + "$ , siendo " + descuento + "$, el impuesto que se pagó.")
+
+        }
+
+
+    descuento = lamparitasPrecioCantidad * porcentaje / 100;
+
+
+    lamparitasPrecioAplicado = lamparitasPrecioCantidad - descuento;
+
+
+    document.getElementById("txtIdprecioDescuento").value = lamparitasPrecioAplicado
+}  
+            
