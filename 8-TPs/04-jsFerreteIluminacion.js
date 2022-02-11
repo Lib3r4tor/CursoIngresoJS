@@ -89,7 +89,7 @@ function CalcularPrecio ()
                 }
             }                         
         }       
-        if(lamparitasPrecioAplicado>120)
+        if(lamparitasPrecioAplicado>=120)
         {
             porcentaje = 10;
             descuento = lamparitasPrecioCantidad * porcentaje / 100;
