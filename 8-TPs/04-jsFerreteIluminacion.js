@@ -11,100 +11,198 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
 function CalcularPrecio () 
 {
     //Variables
- 	var lamparitasCantidad;
-    var lamparitasPrecio;
-    var descuento;
-    var porcentaje;
+    var cantidadLamparita;
+    var precioLamparita;
     var marca;
-    var lamparitasPrecioCantidad;
-    var lamparitasPrecioAplicado;
+    var porcentaje;
+    var precioBruto
+    var precioFinal;
+    var descuento;
 
+    //Operaciones  Cantidad ingresada
+    cantidadLamparita = document.getElementById("txtIdCantidad").value
+    cantidadLamparita = parseInt(cantidadLamparita);
+    //Valor de las lamparitas
+    precioLamparita = 35;
+    //Marcas de lamparas
+    marca = document.getElementById("Marca").value;
+    //Precio de las cantidades ingresadas
+    precioBruto = cantidadLamparita * precioLamparita;
+    //porcentaje
+    porcentaje = 0;
 
-    // Operaciones
-        //Valor de las lamparitas
-        lamparitasPrecio = 35;
-        //Cantidad de lamparitas ingresadas
-        lamparitasCantidad = document.getElementById("txtIdCantidad").value;
-        lamparitasCantidad = parseInt(lamparitasCantidad);
-        //Declaracion de la marca a seleccionar
-        marca = document.getElementById("Marca").value;
-        //Valor de la cantidad de lamparitas ingresadas
-        lamparitasPrecioCantidad = lamparitasCantidad * lamparitasPrecio;
-        //Porcentaje
-        porcentaje = 0;
-        //Precio neto de lamparitas
-        lamparitasPrecioAplicado = lamparitasPrecioCantidad;
-    //if y else de los ejercicios
+    //If y else de la operacion
 
-        if(lamparitasCantidad >=6 )
-        {  
-        porcentaje = 50;    
-        }
-        else 
+    if( marca == "ArgentinaLuz")
+    {
+        if(cantidadLamparita >= 6)
         {
-            if(lamparitasCantidad == 5)
+            porcentaje = 50;
+        }
+        else
+        {
+            if(cantidadLamparita == 5)
             {
-                if (marca == "ArgentinaLuz")
-                {
-                    porcentaje = 40;
-                }
-                else
-                {
-                    porcentaje = 30;
-                }
+                porcentaje = 40;
             }
             else
             {
-                if(lamparitasCantidad == 4)
+                if(cantidadLamparita == 4)
                 {
-                    if(marca == "ArgentinaLuz" || marca == "FelipeLamparas")
+                    porcentaje = 25;
+                }
+                else
+                {
+                    if(cantidadLamparita == 3)
+                    {
+                        porcentaje = 15;
+                    }
+                }
+            }
+
+        }
+
+    }
+    else
+    {
+        if( marca == "FelipeLamparas")
+        {
+            if(cantidadLamparita >= 6)
+            {
+                porcentaje = 50;
+            }
+            else
+            {
+                if(cantidadLamparita == 5)
+                {
+                    porcentaje = 30;
+                }
+                else
+                {
+                    if(cantidadLamparita == 4)
                     {
                         porcentaje = 25;
                     }
                     else
                     {
-                        porcentaje = 20;
+                        if(cantidadLamparita == 3)
+                        {
+                            porcentaje = 10;
+                        }
+            
                     }
+                }
+            }
+        }
+    }
+    if( marca == "JeLuz")
+    {
+        if(cantidadLamparita >= 6)
+        {
+            porcentaje = 50;
+        }
+        else
+        {
+            if(cantidadLamparita == 5)
+            {
+                porcentaje = 30;            
+            }
+            else
+            {
+                if(cantidadLamparita == 4)
+                {
+                    porcentaje = 20;
                 }
                 else
                 {
-                    if(lamparitasCantidad == 3)
+                    if(cantidadLamparita == 3)
                     {
-                        if(marca == "ArgentinaLuz")
-                        {
-                            porcentaje = 15;
-                        }
-                        else
-                        {
-                            if(marca == "FelipeLamparas")
-                            {
-                                porcentaje = 10
-                            }
-                            else
-                            {
-                                porcentaje = 5
-                            }
-                        }
-                    }          
+                        porcentaje = 5;
+                    }
                 }
-            }                         
-        }       
-        if(lamparitasPrecioAplicado>=120)
-        {
-            porcentaje = 10;
-            descuento = lamparitasPrecioCantidad * porcentaje / 100;
-            lamparitasPrecioAplicado + descuento;
-            alert("Usted pago " + lamparitasPrecioAplicado + "$ , siendo " + descuento + "$, el impuesto que se pagó.")
+            }
 
         }
+    }
+    else{
+        if( marca == "HazIluminacion")
+        {
+            if(cantidadLamparita >= 6 )
+            {
+                porcentaje = 50;
+            }
+            else
+            {
+                if(cantidadLamparita == 5)
+                {
+                    porcentaje = 30;
+                }
+                else
+                {
+                    if(cantidadLamparita == 4)
+                    {
+                        porcentaje = 20;
+                    }
+                    else{
+                        if(cantidadLamparita == 3)
+                        {
+                            porcentaje = 5;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+    if(marca == "Osram"){
+        if(cantidadLamparita >= 6)
+        {
+            porcentaje = 50;
+        }
+        else
+        {
+            if(cantidadLamparita == 5)
+            {
+                porcentaje = 30;
+            }
+            else
+            {
+                if(cantidadLamparita == 4)
+                {
+                    porcentaje = 20;
+                }
+                else
+                {
+                    if(cantidadLamparita == 3)
+                    {
+                        porcentaje = 5
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        if(precioBruto >= 120)
+        {
+    
+        porcentaje = 10;
+
+        precioFinal = precioBruto - descuento;
+
+        descuento = precioBruto * porcentaje / 100;
+
+        precioBruto + descuento;
+
+        alert("Usted pago " + precioBruto + "$ de IIBB., siendo " + descuento + "$ el impuesto que se pagó." );
+        }
+
+    }
 
 
-    descuento = lamparitasPrecioCantidad * porcentaje / 100;
+    descuento = precioBruto * porcentaje / 100;
 
+    precioFinal = precioBruto - descuento;
 
-    lamparitasPrecioAplicado = lamparitasPrecioCantidad - descuento;
-
-
-    document.getElementById("txtIdprecioDescuento").value = lamparitasPrecioAplicado
-}  
-            
+    document.getElementById("txtIdprecioDescuento").value = precioFinal
+}
