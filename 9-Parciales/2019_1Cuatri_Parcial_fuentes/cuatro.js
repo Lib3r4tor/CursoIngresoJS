@@ -9,7 +9,7 @@ function mostrar()
     numeroUno = prompt("Ingrese el primer numero");
     numeroUno = parseInt(numeroUno);
 
-    numeroDos = prompt("Ingrese el segundo nombre");
+    numeroDos = prompt("Ingrese el segundo numero");
     numeroDos = parseInt(numeroDos);
 
     suma = numeroUno + numeroDos;
@@ -26,5 +26,16 @@ function mostrar()
         {
             alert("La resta da " + resta);
         }
+        else
+        {
+            if(numeroDos > numeroUno)
+            {
+                alert("La suma da " + suma);
+            }
+        }
+    }
+    if(resta > 10)
+    {
+        alert("La resta es " + resta + " y supero el 10.")
     }
 }
