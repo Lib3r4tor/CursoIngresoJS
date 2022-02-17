@@ -18,6 +18,8 @@ function CalcularPrecio ()
     var precioBruto
     var precioFinal;
     var descuento;
+    var brutoSuperado
+    
 
     //Operaciones  Cantidad ingresada
     cantidadLamparita = document.getElementById("txtIdCantidad").value
@@ -30,174 +32,67 @@ function CalcularPrecio ()
     precioBruto = cantidadLamparita * precioLamparita;
     //porcentaje
     porcentaje = 0;
+    //Punto  E
+    brutoSuperado = 10;
 
-    //If y else de la operacion
-
-    if( marca == "ArgentinaLuz")
+    switch(cantidadLamparita)
     {
-        if(cantidadLamparita >= 6)
-        {
-            porcentaje = 50;
-        }
-        else
-        {
-            if(cantidadLamparita == 5)
+        case 5 :
+            switch (marca)
             {
-                porcentaje = 40;
+                case "ArgentinaLuz":
+                    porcentaje = 40;
+                    break;
+                default:
+                    porcentaje = 30;
+                    break;
             }
-            else
+        break;
+        case 4 :
+            switch(marca)
             {
-                if(cantidadLamparita == 4)
-                {
+                case "ArgentinaLuz":
+                    
+                case "FelipeLamparas":
                     porcentaje = 25;
-                }
-                else
-                {
-                    if(cantidadLamparita == 3)
-                    {
-                        porcentaje = 15;
-                    }
-                }
-            }
-
-        }
-
-    }
-    else
-    {
-        if( marca == "FelipeLamparas")
-        {
-            if(cantidadLamparita >= 6)
-            {
-                porcentaje = 50;
-            }
-            else
-            {
-                if(cantidadLamparita == 5)
-                {
-                    porcentaje = 30;
-                }
-                else
-                {
-                    if(cantidadLamparita == 4)
-                    {
-                        porcentaje = 25;
-                    }
-                    else
-                    {
-                        if(cantidadLamparita == 3)
-                        {
-                            porcentaje = 10;
-                        }
-            
-                    }
-                }
-            }
-        }
-    }
-    if( marca == "JeLuz")
-    {
-        if(cantidadLamparita >= 6)
-        {
-            porcentaje = 50;
-        }
-        else
-        {
-            if(cantidadLamparita == 5)
-            {
-                porcentaje = 30;            
-            }
-            else
-            {
-                if(cantidadLamparita == 4)
-                {
+                    break;
+                default:
                     porcentaje = 20;
-                }
-                else
-                {
-                    if(cantidadLamparita == 3)
-                    {
-                        porcentaje = 5;
-                    }
-                }
+                    break;
             }
+        break;
+        case 3 :
+            switch(marca)
+            {
+                case "ArgentinaLuz":
+                    porcentaje = 15;
+                    break;
+                case "FelipeLamparas":
+                    porcentaje = 10;
+                    break;
+                default:
+                    porcentaje = 5;
+                    break;
+            }
+        break;
+    }
 
-        }
-    }
-    else{
-        if( marca == "HazIluminacion")
-        {
-            if(cantidadLamparita >= 6 )
-            {
-                porcentaje = 50;
-            }
-            else
-            {
-                if(cantidadLamparita == 5)
-                {
-                    porcentaje = 30;
-                }
-                else
-                {
-                    if(cantidadLamparita == 4)
-                    {
-                        porcentaje = 20;
-                    }
-                    else{
-                        if(cantidadLamparita == 3)
-                        {
-                            porcentaje = 5;
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-    if(marca == "Osram"){
-        if(cantidadLamparita >= 6)
-        {
-            porcentaje = 50;
-        }
-        else
-        {
-            if(cantidadLamparita == 5)
-            {
-                porcentaje = 30;
-            }
-            else
-            {
-                if(cantidadLamparita == 4)
-                {
-                    porcentaje = 20;
-                }
-                else
-                {
-                    if(cantidadLamparita == 3)
-                    {
-                        porcentaje = 5
-                    }
-                }
-            }
-        }
-    }
-    else
+    if(cantidadLamparita >= 6)
     {
-        if(precioBruto >= 120)
-        {
+        porcentaje = 50;
+    }
     
-        porcentaje = 10;
+    if(precioBruto >= 120)
+            {
+                precioFinal = precioBruto + descuento;
+    
+                descuento = precioBruto * brutoSuperado / 100;
+    
+                alert("Usted pago " + precioBruto + "$, siendo " + descuento + "$ el impuesto que se pagó." );
+            }
+        
+    
 
-        precioFinal = precioBruto - descuento;
-
-        descuento = precioBruto * porcentaje / 100;
-
-        precioBruto + descuento;
-
-        alert("Usted pago " + precioBruto + "$ de IIBB., siendo " + descuento + "$ el impuesto que se pagó." );
-        }
-
-    }
 
 
     descuento = precioBruto * porcentaje / 100;
@@ -205,4 +100,5 @@ function CalcularPrecio ()
     precioFinal = precioBruto - descuento;
 
     document.getElementById("txtIdprecioDescuento").value = precioFinal
+
 }
