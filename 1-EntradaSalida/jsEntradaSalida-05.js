@@ -5,11 +5,20 @@ ej.: "Usted se llama José y tiene 66 años" 	*/
 function mostrar()
 {	
 	var nombre;
+	var edad;
+
+	nombre = document.getElementById("txtIdNombre").value;
+
+	edad = document.getElementById("txtIdEdad").value;
+
+	alert("Usted se llama " + nombre + " y tiene " + edad + " de edad.");
+}
+
+
+/*var nombre;
     var edad;
 
  nombre = txtIdNombre.value;
  edad = txtIdEdad.value;
 
-	alert(`Usted se llama ${nombre} y tiene ${edad} años.`);
-}
-
+	alert(`Usted se llama ${nombre} y tiene ${edad} años.`);*/
