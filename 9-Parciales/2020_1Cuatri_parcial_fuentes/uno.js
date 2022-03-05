@@ -1,180 +1,383 @@
-/*Debemos realizar la carga de 5(cinco) productos de prevención de contagio,
-de cada una debo obtener los siguientes datos:
-el tipo (validar "barbijo" , "jabón" o "alcohol") ,
-el precio (validar entre 100 y 300),
-la cantidad de unidades (no puede ser 0 o negativo y no debe superar las 1000 unidades),
-la Marca y el fabricante.
-Se debe Informar al usuario lo siguiente:
-a) Del más barato de los alcohol, la cantidad de unidades y el fabricante
-b) Del tipo con mas unidades, el promedio por compra
-c) Cuántas unidades de jabones hay en total*/
+/*
+Ejercicio parcial 1
+Ivan Gonzalez Div H
+ 1- Una casa de computación que se especializa en venta de insumos importados desea calcular ciertas métricas en base a las ventas de sus productos.
+
+Se ingresa de cada venta: (Ingresa mínimo 5 ventas)
+-Nombre del producto.
+-Género: (Memorias – Discos – Motherboards)
+-Tipo de Venta: (Online – Local)
+-Importe: (No pueden ser números negativos ni mayor a los 30000)
+
+
+Se pide:
+A- El más barato de “Discos” con su importe.
+B- De la venta más cara, el nombre del producto y tipo.
+C- La cantidad de ventas que sean de “Memorias” y cuesten menos de $850. 
+
+
+
+
+*/
+
+
+
 function mostrar()
 {
-	//Variables declaradas
-    var precioIngresado;
-    var articuloIngresado;
-    var contadorproductos;
-    var precioParseado;
-    var marcaProducto;
-    var precioArticuloBarato;
-	var precioMinimo;
-	var precioMaximo;
-    var fabricanteProducto;
-    var cantidadTotal;
-    var cantidadUnidades;
-    var acumulador;
-    var promedio;
-    var bandera;
-	var unidadJabon;
-	var cantidadParseado;
-	var cantidadBarato;
-	var marcaBarato;
-	var cantidadMinima;
-	var cantidadMaxima;
-	var marcaMayorUnidad;
+	var nombreProducto;
+	var generoIngresado;
+	var tipoVenta;
+	var importe;
+	var bandera;
+	var contadorMemoriasBaratas;
+	var discosBaratos;
+	var nombreProductoCaro;
+	var tipoProductoMasCarp;
+	var contadorIteracciones;
+  var importeCaro;
+  var importeBarato;
 
-	//Operaciones declaradas
-	contadorproductos = 0;
+	bandera = "Primera vuelta";
 
-    bandera = "Es la primera vuelta"
+	contadorMemoriasBaratas = 0;
 
-    acumulador = 0;
+	contadorIteracciones = 0;
 
-    promedioDivision = 2
-
-	//Ejercicio
-	while(contadorproductos<5)
-    {
-		articuloIngresado = prompt ("Ingrese su producto (barbijo, jabon, alcohol");
-
-		while(articuloIngresado != "barbijo" && articuloIngresado != "jabon" && articuloIngresado != "alcohol")
-        {
-            alert("Sin stock.");
+	while(contadorIteracciones < 3)
+  {
+    nombreProducto = prompt("Ingrese el nombre del producto");
     
-            articuloIngresado = prompt("Ingrese su producto (barbijo, jabon, alcohol");
-		}
-		//Ingreso de marcas y fabricante
-		marcaProducto = prompt("Ingrese la marca del producto");
+    generoIngresado = prompt("Ingrese el tipo de producto");
+    generoIngresado = generoIngresado.toLowerCase();
 
-		fabricanteProducto = prompt("Ingrese el fabricante ");
+    while(generoIngresado != "memorias" && generoIngresado != "discos" && generoIngresado != "motherboard")
+    {
+      generoIngresado = prompt("Sin stock, ingrese tipo de producto");
+      generoIngresado = generoIngresado.toLocaleLowerCase();
+    }
 
-		//Cantidades ingresadas
-		cantidadUnidades = prompt("Ingrese la cantidad de unidades");
-		cantidadParseado = parseInt(cantidadUnidades);
+    tipoVenta = prompt("Ingrese el tipo de venta");
+    tipoVenta = tipoVenta.toLowerCase();
 
-		while(isNaN(cantidadParseado))
-		{
-			cantidadUnidades = prompt("Dato incorrecto, ingrese un numero");
-			cantidadParseado = parseInt(cantidadUnidades);
-		}
+    while(tipoVenta != "online" && tipoVenta != "local")
+    {
+      tipoVenta = prompt("  ERROR, INGRESE EL TIPO DE VENTA");
+      tipoVenta = tipoVenta.toLowerCase();
+    }
 
-		//Ingreso de precios
-		precioIngresado = prompt("Ingrese el precio del producto");
-		precioParseado = parseInt(precioIngresado);
+    importe = prompt("Ingrese el importe");
+    importe = parseInt(importe);
 
-        while(isNaN(precioParseado) || precioParseado > 300 || precioParseado < 100)
-		{
-			precioIngresado = prompt("Dato incorrecto, ingrese un numero entre 100 y 300.");
-			precioParseado = parseInt(precioIngresado);
-		}
-		//Limite de unidades
-		while(cantidadParseado < 0 || cantidadParseado > 1000)
-        {
-            alert("Cantidades no validas, intente de nuevo.");
+    while(isNaN(importe))
+    {
+      importe = prompt("ERROR, Ingrese el importe en numeros");
+      importe = parseInt(importe);
+    }
 
-            precioParseado = prompt("Ingrese su cantidad pedida");
-        }
-		//Suma de precios
-		acumulador += precioParseado;
+    while(importe > 30000)
+    {
+      importe = prompt("ERROR, Ingrese importe valido");
+      importe = parseInt(importe);
+    }
+    while(importe < 0)
+    {
+      importe = prompt("ERROR, Ingrese importe valido");
+      importe = parseInt(importe);
+    }
 
-		//Precios y cantidades 
-        if(bandera == "Es la primera vuelta")
-        {
-            precioMinimo = precioParseado;
+    if(bandera == "Primera vuelta")
+    {
+      importeBarato = importe;
+      discosBaratos = nombreProducto;
+      
 
-            precioMaximo = precioParseado;
 
-			cantidadMinima = cantidadParseado;
+      importeCaro = importe;
+      nombreProductoCaro = nombreProducto;
+      tipoProductoMasCarp = tipoVenta;
 
-			cantidadMaxima = cantidadParseado;
+      bandera = "Ya no"
 
-            bandera = "Ya no es la primera vuelta"
-        }
+    }
+    else
+    {
+      if(importe < importeBarato)
+      {
+        importeBarato = importeBarato;
+        discosBaratos = nombreProducto;
+      }
         else
         {
-            if(precioParseado > precioMaximo)
-            {
-                precioMaximo = precioParseado;
-            }
-            else
-            {
-                if(precioParseado < precioMinimo)
-                {
-                    precioMinimo = precioParseado;
-                }
-            }
-        }
-		if(cantidadParseado > cantidadMaxima)
-		{
-			cantidadMaxima = cantidadParseado;
-		}
-		else
-		{
-			if(cantidadParseado < cantidadMinima)
-			{
-				cantidadMinima = cantidadParseado;
-			}
-		}
-		//Punto A
-		/*if(articuloIngresado == "alcohol" && precioMinimo == precioParseado)
-		{
-			precioArticuloBarato = precioMinimo;
-			cantidadBarato = cantidadParseado;
-			marcaBarato = marcaProducto;
-		}*/
-		switch(articuloIngresado){
-			case "alcohol":
-
-					precioArticuloBarato = precioParseado;
-					cantidadBarato = cantidadParseado;
-					marcaBarato = marcaProducto;
-
-					if(precioParseado<precioArticuloBarato)
-					{
-						precioArticuloBarato = precioParseado;
-						cantidadBarato = cantidadParseado;
-						marcaBarato = marcaProducto;
-					}
-
-			break;
-			case "barbijo":
-
-			break;
-			case "jabon":
-
-			break;
-		}
-		//Punto B
-		
-		if(cantidadMaxima == cantidadParseado)
-		{
-			cantidadTotal = cantidadParseado;
-			marcaMayorUnidad = articuloIngresado;
-			promedio = acumulador / promedioDivision;
-		}
-		
-		//Punto C
-		if(articuloIngresado == "jabon")
-		{
-			unidadJabon = cantidadParseado;
-		}
+          if(importe > importeCaro)
+          {
+           importeCaro = importe;
+           nombreProductoCaro = nombreProducto;
+           tipoProductoMasCarp = tipoVenta;
+          }
+       }
+    }
 
 
-		contadorproductos = contadorproductos + 1;
-	}
+    if(generoIngresado == "memorias" && importe < 850)
+    {
+      contadorMemoriasBaratas = contadorMemoriasBaratas + 1;
+    }
 
-	
-	alert("El precio del alcohol mas barato es " + precioArticuloBarato + "$ Su cantidad pedida fue de " + cantidadBarato + " unidades y el fabricante es " + marcaBarato + ". El articulo con mas unidades fue " + marcaMayorUnidad + " y su promedio es " + promedio + " y hay " + unidadJabon + " unidades de jabones en total")
 
+
+
+    contadorIteracciones = contadorIteracciones + 1;
+  }
+
+  document.write("El nombre del Disco mas barato es " + discosBaratos);
+
+  document.write("<br> El nombre del producto mas caro es  " + nombreProductoCaro + " y su tipo de venta es " + tipoProductoMasCarp);
+
+  document.write("<br> La cantidad de discos que valen menos de 850$ " + contadorMemoriasBaratas);
+
+  
+
+
+  
 }
 
+
+
+
+
+
+
+
+/*
+  var productosIngresados;
+  var precioIngresado;
+  var cantidadUnidades;
+  var marcaUnidades;
+  var fabricante;
+  var precioMinimo;
+  var masUnidades;
+  var alchoholBarato;
+  var alcoholUnidades;
+  var alcoholFabricante;
+  var bandera;
+  var cantidadBarato;
+  var fabricanteBarato;
+  var tipoProductoMasUnidades;
+  var promedioCompra;
+  var unidadesJabon;
+  var contadorIteracciones;
+  var acumuladorImporte;
+
+contadorIteracciones = 0;
+
+bandera = "Primero";
+
+acumuladorImporte = 0;
+
+unidadesJabon = 0;
+
+
+while(contadorIteracciones < 5)
+{
+  productosIngresados = prompt("Ingrese los productos");
+  productosIngresados = productosIngresados.toLowerCase();
+
+  while(productosIngresados != "barbijo" && productosIngresados != "jabon" && productosIngresados != "alcohol")
+  {
+    productosIngresados = prompt("Productos sin stock, intente de vuelta");
+    productosIngresados = productosIngresados.toLowerCase();
+  }
+
+  precioIngresado = prompt("Ingreser el precio del prodcuto");
+  precioIngresado = parseInt(precioIngresado);
+
+  while(isNaN(precioIngresado))
+  {
+    precioIngresado = prompt("ERROR. ingrese un numero");
+    precioIngresado = parseInt(precioIngresado);
+  }
+
+  while(precioIngresado < 100)
+  {
+    precioIngresado = prompt("ERROR. ingrese precio valido");
+    precioIngresado = parseInt(precioIngresado);
+  }
+  while(precioIngresado > 300)
+  {
+    precioIngresado = prompt("ERROR. ingrese precio valido");
+    precioIngresado = parseInt(precioIngresado);
+  }
+
+  cantidadUnidades = prompt("Ingrese la cantidad de unidades");
+  cantidadUnidades = parseInt(cantidadUnidades);
+
+  while(isNaN(cantidadUnidades))
+  {
+    cantidadUnidades = prompt("ERROR. ingrese un numero");
+    cantidadUnidades = parseInt(cantidadUnidades);
+  }
+
+  while(cantidadUnidades < 0 && cantidadUnidades > 1000)
+  {
+    cantidadUnidades = prompt("ERROR. Ingrese cantidad valida.");
+    cantidadUnidades = parseInt(cantidadUnidades);
+  }
+
+  marcaUnidades = prompt("Ingrese la marca del producto");
+
+  fabricante = prompt("Ingrese el fabricante del producto");
+
+  acumuladorImporte = acumuladorImporte + precioIngresado;
+
+  if(bandera == "Primero")
+  {
+    precioMinimo = precioIngresado;
+
+    masUnidades = cantidadUnidades;
+
+    bandera = "Ya no es";
+  }
+
+  if(precioIngresado < precioMinimo)
+  {
+    precioMinimo = precioIngresado;
+
+    if(productosIngresados == "alcohol")
+    {
+      alchoholBarato = marcaUnidades;
+      
+      alcoholUnidades = cantidadUnidades;
+
+      alcoholFabricante = fabricante;
+    }
+  }
+
+  if(cantidadUnidades > masUnidades)
+  {
+    masUnidades = cantidadUnidades;
+    tipoProductoMasUnidades = productosIngresados;
+  }
+
+
+  if(productosIngresados == "jabon")
+  {
+    unidadesJabon = unidadesJabon + 1;
+  }
+
+  contadorIteracciones = contadorIteracciones + 1;
+}
+
+promedioCompra = acumuladorImporte / 5;
+
+alert("La marca del alcohol mas barato es " + alchoholBarato + ". La cantidad pedida del alcohol es " + alcoholUnidades + " Y el fabricante es " + alcoholFabricante + ". El producto con mas unidades es " + tipoProductoMasUnidades + ". Y la cantidad de jabon es " + unidadesJabon);
+
+
+
+
+*/
+
+
+
+/*1. Se ingresan 5 importes, marca del producto y pías de origen (China, Uruguay o Paraguay).
+Calcular y mostrar:
+a. Mínimo importe con su pías
+b. Máximo importe con su marca
+c. Promedio importe
+d. Cantidad de productos de China
+e. Sobre el máximo encontrado aplicar un procentaje del 10% a dicho importe.
+var importesIngresados;
+var marcaIngresada;
+var paisDeOrigenIngresado;
+var importeMenor;
+var paisMinimoImporte;
+var importeMayor;
+var marcaMaximoImporte;
+var promedio;
+var contadorIteracciones;
+var acumuladorImporte;
+var bandera;
+var contadorProductosChina;
+var porcentaje;
+var porcentajeAplicado;
+var descuentoAplicado;
+
+contadorIteracciones = 0;
+
+contadorProductosChina = 0;
+acumuladorImporte = 0;
+porcentaje = 10;
+
+bandera = "Primera vuelta";
+
+  while(contadorIteracciones<5)
+  {
+    importesIngresados = prompt("Ingrese su importe");
+    importesIngresados = parseInt(importesIngresados);
+
+    while(isNaN(importesIngresados))
+    {
+      importesIngresados = prompt("Caracter no valido, ingrese un numero");
+      importesIngresados = parseInt(importesIngresados);
+    }
+
+
+
+    marcaIngresada = prompt("Ingrese la marca registrada");
+
+
+
+    paisDeOrigenIngresado = prompt("Ingrese el pais de Origen");
+
+    while(paisDeOrigenIngresado != "China" && paisDeOrigenIngresado != "Uruguay" && paisDeOrigenIngresado != "Paraguay")
+    {
+      paisDeOrigenIngresado = prompt("Pais no registrado para el importe, ingrese China, Uruguay o Paraguay");
+    }
+
+
+
+    if(bandera == "Primera vuelta")
+    {
+      importeMayor = importesIngresados;
+      marcaMaximoImporte = marcaIngresada;
+
+      importeMenor = importesIngresados;
+      paisMinimoImporte = paisDeOrigenIngresado;
+
+      bandera = "Ya no";
+    }
+    else
+    {
+      if(importesIngresados > importeMayor)
+      {
+        importeMayor = importesIngresados;
+        marcaMaximoImporte = marcaIngresada;
+      }
+      else
+      {
+        if(importesIngresados < importeMenor)
+        {
+          importeMenor = importesIngresados;
+          paisMinimoImporte = paisDeOrigenIngresado;
+        }
+      }
+    }
+
+    acumuladorImporte = acumuladorImporte + importesIngresados;
+
+    if(paisDeOrigenIngresado == "China")
+    {
+      contadorProductosChina = contadorProductosChina + 1;
+    }
+
+    contadorIteracciones ++;
+
+  }
+
+  promedio = acumuladorImporte / contadorIteracciones;
+
+  porcentajeAplicado = importeMayor * porcentaje / 100;
+
+  descuentoAplicado = importeMayor - porcentajeAplicado
+
+  alert("El importe minimo es " + importeMenor + " y su pais " + paisMinimoImporte + ". El maximo importe es " + importeMayor + " y su marca es " + marcaMaximoImporte + ". El promedio del importe es " + promedio + " y la cantidad de productos de China son " + contadorProductosChina + " Y el porcentaje del 10% sobre del maximo importe es " + descuentoAplicado);
+ */
