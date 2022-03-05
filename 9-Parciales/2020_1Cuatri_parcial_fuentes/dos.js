@@ -125,7 +125,7 @@ function mostrar() {
 			}
 			else
 			{
-				notaIngresada > mayorNota
+				if(notaIngresada > mayorNota)
 				{
 					mayorNota = notaIngresada;
 

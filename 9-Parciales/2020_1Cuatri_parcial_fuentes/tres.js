@@ -16,157 +16,146 @@ Pedir datos por prompt y mostrar por document.write o console.log
 function mostrar()
 {
 	var contadorIteracciones;
-	var nombreIngresado;
-	var asientoIngresado;
-	var importePasajero;
-	var sexoIngresado;
-	var edadIngresada;
-	var bandera;
-	var promedioEdadMujeres;
-	var maximoImporteNB;
-	var minimoImporteF;
-	var contadorEdadMujeres;
-	var nombreUltimoAsiento;
-	var importeUltimoAsiento;
+	var nombre;
+	var asiento;
+	var importe;
+	var sexo;
+	var edad;
+	var ultimoImporte;
+	var ultimoNombre;
+	var banderaUltima;
+	var ultimoAsiento;
+	var contadorMujeres;
+	var promedio;
+	var banderaMax;
+	var MaximoImporteNB;
+	var banderaMinima;
+	var MinimoImporteF;
+	var contadorMujeresIndi;
 
-	contadorEdadMujeres = 0;
+	banderaUltima = "Ult";
+	banderaMax = "Max";
+	banderaMinima = "Min";
 
 	contadorIteracciones = 0;
-
-	bandera = "Primer";
+	contadorMujeres = 0;
+	contadorMujeresIndi = 0;
 
 	while(contadorIteracciones < 5)
 	{
-		nombreIngresado = prompt("Ingrese su nombre");
-
-		asientoIngresado = prompt("Ingrese su asiento");
-		asientoIngresado = parseInt(asientoIngresado);
-
-		while(isNaN(asientoIngresado))
-		{
-			asientoIngresado = prompt("Ingrese su asiento en NUMERO");
-			asientoIngresado = parseInt(asientoIngresado);
-		}
-		while(asientoIngresado > 100)
-		{
-			asientoIngresado = prompt("Ingrese su asiento VALIDO");
-			asientoIngresado = parseInt(asientoIngresado);
-		}
-		while(asientoIngresado < 0)
-		{
-			asientoIngresado = prompt("Ingrese su asiento VALIDO");
-			asientoIngresado = parseInt(asientoIngresado);
-		}
-
-		importePasajero = prompt("Ingrese su importe en pasaje");
-		importePasajero = parseInt(importePasajero);
-
-		while(isNaN(importePasajero))
-		{
-			importePasajero = prompt("Ingrese su importe en NUMERO");
-			importePasajero = parseInt(importePasajero);
-		}
-		while(importePasajero > 300000)
-		{
-			importePasajero = prompt("Ingrese su importe VALIDO");
-			importePasajero = parseInt(importePasajero);
-		}
-		while(importePasajero < 0)
-		{
-			importePasajero = prompt("Ingrese su importe VALIDO");
-			importePasajero = parseInt(importePasajero);
-		}
+		nombre = prompt("Ingrese su nombre");
 
 
-		sexoIngresado = prompt("Ingrese su sexo");
-		sexoIngresado = sexoIngresado.toLowerCase();
 
-		while(sexoIngresado != "femenino" && sexoIngresado != "masculino" && sexoIngresado != "no binario")
+		asiento = prompt("Ingrese su asiento");
+		asiento = parseInt(asiento);
+
+		while(isNaN(asiento))
 		{
-			sexoIngresado = prompt("Ingrese su sexo VALIDO");
-			sexoIngresado = sexoIngresado.toLowerCase();
+			asiento = prompt("ERROR, caracter invalido. Ingrese un numero");
+			asiento = parseInt(asiento);
 		}
 
-		edadIngresada = prompt("Ingrese su edad");
-		edadIngresada = parseInt(edadIngresada);
-
-		while(isNaN(edadIngresada))
+		while(asiento < 1 || asiento > 100)
 		{
-			edadIngresada = prompt("Ingrese su edad en NUMERO");
-			edadIngresada = parseInt(edadIngresada);
-		}
-		while(edadIngresada > 100)
-		{
-			edadIngresada = prompt("Ingrese su edad VALIDO");
-			edadIngresada = parseInt(edadIngresada);
-		}
-		while(edadIngresada < 0)
-		{
-			edadIngresada = prompt("Ingrese su edad VALIDO");
-			edadIngresada = parseInt(edadIngresada);
+			asiento = prompt("ERROR, Asiento no encontrado. Ingrese su asiento");
+			asiento = parseInt(asiento);
 		}
 
 
 
+		importe = prompt("Ingrese su pasaje");
+		importe = parseInt(importe);
 
-
-
-		if(bandera == "Primer")
+		while(isNaN(importe))
 		{
+			importe = prompt("ERROR, caracter de importe invalido. Ingrese un numero");
+			importe = parseInt(importe);
+		}
+		while(importe < 0 || importe > 300000)
+		{
+			importe = prompt("ERROR, importe no valido. Ingrese su importe");
+			importe = parseInt(importe);
+		}
 
-			if(sexoIngresado == "no binario")
+		sexo = prompt("ingrese su genero");
+		sexo = sexo.toLowerCase();
+
+		while(sexo != "femenino" && sexo != "masculino" && sexo != "no binario")
+		{
+			sexo = prompt("ERROR, genero no encontrado. Ingrese genero");
+			sexo = sexo.toLowerCase();
+		}
+
+		edad = prompt("Ingrese su edad");
+		edad = parseInt(edad);
+
+		while(isNaN(edad))
+		{
+			edad = prompt("ERROR, caracter de edad invalido. Ingrese un numero");
+			edad = parseInt(edad);
+		}
+		while(edad < 0 || edad > 100)
+		{
+			edad = prompt("ERROR, edad no valido. Ingrese su edad");
+			edad = parseInt(edad);
+		}
+		//B
+		if(sexo == "femenino")
+		{
+			contadorMujeres = contadorMujeres + edad;
+			contadorMujeresIndi = contadorMujeresIndi + 1;
+		}
+
+		if(sexo =="no binario")
+		{
+			if(banderaMax == "Max")
 			{
-				maximoImporteNB = importePasajero
+				MaximoImporteNB = importe;
+				banderaMax = "No mas."
 			}
-
-			if(sexoIngresado == "femenino")
+			else
 			{
-			minimoImporteF = minimoImporteF
+				MaximoImporteNB = importe;
 			}
-
-			bandera = "Ya no";
 		}
 
-		if(sexoIngresado == "no binario" && importePasajero > maximoImporteNB)
+		if(sexo =="femenino")
 		{
-			maximoImporteNB = importePasajero;
+			if(banderaMinima == "Min")
+			{
+				MinimoImporteF = importe;
+				banderaMinima = "Nonomas";
+			}
+			else
+			{
+				MinimoImporteF = importe;
+			}
 		}
 
-		if(sexoIngresado == "femenino" && importePasajero < minimoImporteF)
-		{
-			minimoImporteF = importePasajero;
-		}
 
-		if(sexoIngresado == "femenino")
-		{
-			contadorEdadMujeres += edadIngresada
-		}
 
-		if(contadorIteracciones == 5)
-		{
-			nombreUltimoAsiento = nombreIngresado;
 
-			importeUltimoAsiento = importePasajero;
-		}
 
+
+	
 		contadorIteracciones = contadorIteracciones + 1;
 
-
-		
 	}
+	//A
+	ultimoNombre = nombre;
+	ultimoImporte = importe;
+	ultimoAsiento = asiento;
 
-	promedioEdadMujeres = contadorEdadMujeres / 5;
+	promedio = contadorMujeres / contadorMujeresIndi;
 
+	document.write("El ultimo nombre del ultimo asiento registrado es " + ultimoNombre + ", su importe es " + ultimoImporte + " y su asiento es " + ultimoAsiento);
 
-	document.write("La edad promedio de las mujeres es " + promedioEdadMujeres);
-	
+	document.write("<br> La edad promedio de las mujeres son " + promedio);
 
-	document.write("<br> El maximo importe ingresado por un pasaje de un pasajero sexo nb es " + maximoImporteNB);
-	
-	document.write("<br> El minimo importe ingresado por un pasaje de un pasajero sexo f " + minimoImporteF);
+	document.write("<br> El maximo importe realizado por una persona de genero No Binaria es " + MaximoImporteNB);
 
-
-	
+	document.write("<br> El minimo importe realizado por una persona de genero Femenina es " + MinimoImporteF);
 
 
 }
