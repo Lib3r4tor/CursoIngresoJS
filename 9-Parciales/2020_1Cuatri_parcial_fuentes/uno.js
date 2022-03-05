@@ -1,6 +1,7 @@
 /*
 Ejercicio parcial 1
 Ivan Gonzalez Div H
+
  1- Una casa de computación que se especializa en venta de insumos importados desea calcular ciertas métricas en base a las ventas de sus productos.
 
 Se ingresa de cada venta: (Ingresa mínimo 5 ventas)
@@ -24,44 +25,45 @@ C- La cantidad de ventas que sean de “Memorias” y cuesten menos de $850.
 
 function mostrar()
 {
-	var nombreProducto;
-	var generoIngresado;
-	var tipoVenta;
-	var importe;
-	var bandera;
-	var contadorMemoriasBaratas;
-	var discosBaratos;
-	var nombreProductoCaro;
-	var tipoProductoMasCarp;
-	var contadorIteracciones;
-  var importeCaro;
-  var importeBarato;
+  var contadorIteracciones = 0;
+  var nombreProducto;
+  var generoProducto;
+  var tipoVenta;
+  var importe;
+  var bandera;
+  var respuesta;
+  var contadorMemoriasBaratas = 0;
+  var minimoImporte;
+  var maximoImporte;
+  var nombreProductoCaro;
+  var tipoVentaProductoCaro;
+  
 
-	bandera = "Primera vuelta";
+  bandera = "Primer";
 
-	contadorMemoriasBaratas = 0;
+  respuesta = "si";
 
-	contadorIteracciones = 0;
 
-	while(contadorIteracciones < 3)
+  while(contadorIteracciones < 5 || respuesta === "si")
   {
-    nombreProducto = prompt("Ingrese el nombre del producto");
-    
-    generoIngresado = prompt("Ingrese el tipo de producto");
-    generoIngresado = generoIngresado.toLowerCase();
 
-    while(generoIngresado != "memorias" && generoIngresado != "discos" && generoIngresado != "motherboard")
+    nombreProducto = prompt ("Ingrese su nombre del producto");
+
+    generoProducto = prompt("Ingrese el genero de producto");
+    generoProducto = generoProducto.toLowerCase();
+
+    while(generoProducto != "memorias" && generoProducto != "discos" && generoProducto != "motherboards")
     {
-      generoIngresado = prompt("Sin stock, ingrese tipo de producto");
-      generoIngresado = generoIngresado.toLocaleLowerCase();
+      generoProducto = prompt("NO VENDEMOS, ingrese genero del producto");
+      generoProducto = generoProducto.toLowerCase();
     }
 
     tipoVenta = prompt("Ingrese el tipo de venta");
     tipoVenta = tipoVenta.toLowerCase();
 
-    while(tipoVenta != "online" && tipoVenta != "local")
+    while(tipoVenta != "online" && tipoVenta != "local" )
     {
-      tipoVenta = prompt("  ERROR, INGRESE EL TIPO DE VENTA");
+      tipoVenta = prompt("No hacemos ventas por ese metodo");
       tipoVenta = tipoVenta.toLowerCase();
     }
 
@@ -70,55 +72,43 @@ function mostrar()
 
     while(isNaN(importe))
     {
-      importe = prompt("ERROR, Ingrese el importe en numeros");
+      importe = prompt("ERROR, ingrese en numeros el importe");
       importe = parseInt(importe);
     }
 
-    while(importe > 30000)
+    while(importe <= 0 || importe =='')
     {
-      importe = prompt("ERROR, Ingrese importe valido");
-      importe = parseInt(importe);
-    }
-    while(importe < 0)
-    {
-      importe = prompt("ERROR, Ingrese importe valido");
+      importe = prompt("ERROR, NO ACEPTA IMPORTES VACIOS O 0 NI VALORES NEGATIVOS, INGRESE UN NUMER VALIDO");
       importe = parseInt(importe);
     }
 
-    if(bandera == "Primera vuelta")
+    if(bandera == "Primer")
     {
-      importeBarato = importe;
-      discosBaratos = nombreProducto;
-      
+      minimoImporte = importe;
 
-
-      importeCaro = importe;
-      nombreProductoCaro = nombreProducto;
-      tipoProductoMasCarp = tipoVenta;
+      maximoImporte = importe;
 
       bandera = "Ya no"
-
     }
     else
     {
-      if(importe < importeBarato)
+      if(generoProducto == "discos")
       {
-        importeBarato = importeBarato;
-        discosBaratos = nombreProducto;
-      }
-        else
+        if(importe < minimoImporte)
         {
-          if(importe > importeCaro)
-          {
-           importeCaro = importe;
-           nombreProductoCaro = nombreProducto;
-           tipoProductoMasCarp = tipoVenta;
-          }
-       }
+          minimoImporte = importe;
+        }
+      }
+    }
+    if(importe > maximoImporte)
+    {
+      maximoImporte = importe;
+      nombreProductoCaro = nombreProducto;
+      tipoVentaProductoCaro = tipoVenta;
+
     }
 
-
-    if(generoIngresado == "memorias" && importe < 850)
+    if(generoProducto == "memorias" && importe <= 850)
     {
       contadorMemoriasBaratas = contadorMemoriasBaratas + 1;
     }
@@ -126,19 +116,22 @@ function mostrar()
 
 
 
+
     contadorIteracciones = contadorIteracciones + 1;
+
+    if(contadorIteracciones == 5)
+    {
+      respuesta = prompt("desea continuar?")
+      respuesta = respuesta.toLowerCase();
+    }
   }
 
-  document.write("El nombre del Disco mas barato es " + discosBaratos);
 
-  document.write("<br> El nombre del producto mas caro es  " + nombreProductoCaro + " y su tipo de venta es " + tipoProductoMasCarp);
-
-  document.write("<br> La cantidad de discos que valen menos de 850$ " + contadorMemoriasBaratas);
-
-  
+  alert("El importe del disco mas barato es " + minimoImporte);
+  alert("El nombre del producto mas caro es" +" "+ nombreProductoCaro +" "+ "y su tipo de venta es" +" "+ tipoVentaProductoCaro);
+  alert("La cantidad de memorias que su valor es menor a $850 son:" +" "+  contadorMemoriasBaratas);
 
 
-  
 }
 
 

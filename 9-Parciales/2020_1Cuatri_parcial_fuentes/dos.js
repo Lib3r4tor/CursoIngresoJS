@@ -10,23 +10,16 @@ a)La división con más aspirantes.
 b)el nombre recursante con mayor nota
 c)el nombre del que No es recursante y tiene  la menor nota.
 Pedir datos por prompt y mostrar por document.write o console.log
-
-
-
-
 */
 
-
-
-function mostrar() 
-{
+function mostrar() {
 	var respuesta;
 	var divisionIngresada;
 	var nombreAlumno;
 	var legajoIngresadp;
 	var recursante;
 	var notaIngresada;
-	var bandera;
+	var banderaMenor;;
 	var contadorAspirantesA;
 	var nombreMenorNota;
 	var mayorNota;
@@ -35,9 +28,12 @@ function mostrar()
 	var contadorAspirantesC;
 	var recursanteMayorNota;
 	var mayorDivision;
+	var banderaMayor;
 
 
-	bandera = "Primera";
+	banderaMenor = "Primera";
+
+	banderaMayor = "Primer"
 
 	contadorAspirantesA = 0;
 	contadorAspirantesB = 0;
@@ -45,8 +41,7 @@ function mostrar()
 
 	respuesta = "si";
 
-	while(respuesta == "si")
-	{
+	while (respuesta == "si") {
 		nombreAlumno = prompt("Ingrese su nombre");
 
 
@@ -55,18 +50,15 @@ function mostrar()
 		legajoIngresadp = prompt("Ingrese su legajo");
 		legajoIngresadp = parseInt(legajoIngresadp);
 
-		while(isNaN(legajoIngresadp))
-		{	
-		legajoIngresadp = prompt("Ingrese el numero de legajo");
-		legajoIngresadp = parseInt(legajoIngresadp);
+		while (isNaN(legajoIngresadp)) {
+			legajoIngresadp = prompt("Ingrese el numero de legajo");
+			legajoIngresadp = parseInt(legajoIngresadp);
 		}
-		while(legajoIngresadp > 10000)
-		{
+		while (legajoIngresadp > 10000) {
 			legajoIngresadp = prompt("Ingrese el numero valido de legajo");
 			legajoIngresadp = parseInt(legajoIngresadp);
 		}
-		while(legajoIngresadp < 0)
-		{
+		while (legajoIngresadp < 0) {
 			legajoIngresadp = prompt("Ingrese el numero valido de legajo");
 			legajoIngresadp = parseInt(legajoIngresadp);
 		}
@@ -75,8 +67,7 @@ function mostrar()
 		divisionIngresada = prompt("Ingrese su division");
 		divisionIngresada = divisionIngresada.toLowerCase();
 
-		while(divisionIngresada != "a" && divisionIngresada != "b" && divisionIngresada != "c")
-		{
+		while (divisionIngresada != "a" && divisionIngresada != "b" && divisionIngresada != "c") {
 			divisionIngresada = prompt("Division INVALIDA, ingrese su division");
 			divisionIngresada = divisionIngresada.toLowerCase();
 		}
@@ -84,8 +75,7 @@ function mostrar()
 		recursante = prompt("Es recursante?");
 		recursante = recursante.toLowerCase();
 
-		while(recursante != "si" && recursante != "no")
-		{
+		while (recursante != "si" && recursante != "no") {
 			recursante = prompt("Responda, eres recursante?");
 			recursante = recursante.toLowerCase();
 		}
@@ -93,59 +83,63 @@ function mostrar()
 		notaIngresada = prompt("Ingrese su nota");
 		notaIngresada = parseInt(notaIngresada);
 
-		while(isNaN(notaIngresada))
-		{
+		while (isNaN(notaIngresada)) {
 			notaIngresada = prompt("ERROR,Ingrese numero");
 			notaIngresada = parseInt(notaIngresada);
 		}
 
-		while(notaIngresada > 10)
-		{
+		while (notaIngresada > 10) {
 			notaIngresada = prompt("Ingrese el numero valido de nota");
 			notaIngresada = parseInt(notaIngresada);
 		}
 
-		while(notaIngresada < 0)
-		{
+		while (notaIngresada < 0) {
 			notaIngresada = prompt("Ingrese el numero valido de nota");
 			notaIngresada = parseInt(notaIngresada);
 		}
 
-		if(bandera == "Primera")
-		{
-			mayorNota = notaIngresada;
-
-
-			menorNota = notaIngresada;
-
-			bandera = "Ya no"
-
-		}
-		else
-		{
-			if(notaIngresada > mayorNota)
-			{
-				notaIngresada = notaIngresada;
-				if(recursante == "si")
-				{
-					recursanteMayorNota = nombreAlumno;
-				}
+		if (recursante == "si") {
+			if (banderaMenor == "Primera") {
+				menorNota = notaIngresada
+				nombreMenorNota = nombreAlumno
+				banderaMenor = "Ya no"
 			}
 			else
 			{
 				if(notaIngresada < menorNota)
 				{
-					menorNota = notaIngresada;
-					if(recursante == "no")
-					{
-						nombreMenorNota = nombreAlumno;
-					}
+					menorNota = notaIngresada
+					nombreMenorNota = nombreAlumno	
+				}
+			}
+		}
+		else
+		{
+			if(banderaMayor == "Primer")
+			{
+				mayorNota = notaIngresada;
+
+				recursanteMayorNota = nombreAlumno;
+
+				banderaMayor = "No";
+			}
+			else
+			{
+				notaIngresada > mayorNota
+				{
+					mayorNota = notaIngresada;
+
+					recursanteMayorNota = nombreAlumno;
 				}
 			}
 		}
 
-		switch(divisionIngresada)
-		{
+
+
+
+
+
+		switch (divisionIngresada) {
 			case "a":
 				contadorAspirantesA = contadorAspirantesA + 1;
 				break;
@@ -159,17 +153,14 @@ function mostrar()
 		}
 
 
-		if(contadorAspirantesA > contadorAspirantesB && contadorAspirantesA > contadorAspirantesC)
-		{
+		if (contadorAspirantesA > contadorAspirantesB && contadorAspirantesA > contadorAspirantesC) {
 			mayorDivision = "Division A"
 		}
 
-		if(contadorAspirantesB > contadorAspirantesA && contadorAspirantesB > contadorAspirantesC)
-		{
+		if (contadorAspirantesB > contadorAspirantesA && contadorAspirantesB > contadorAspirantesC) {
 			mayorDivision = "Division B"
 		}
-		if(contadorAspirantesC > contadorAspirantesB && contadorAspirantesC > contadorAspirantesA)
-		{
+		if (contadorAspirantesC > contadorAspirantesB && contadorAspirantesC > contadorAspirantesA) {
 			mayorDivision = "Division C"
 		}
 
@@ -181,15 +172,11 @@ function mostrar()
 	}
 
 
-		document.write("<br> La division con la mayor cantidad de alumnos es " + mayorDivision);
+	document.write("<br> La division con la mayor cantidad de alumnos es " + mayorDivision);
 
-		document.write("<br> El nombre recursante con mayor nota es " + recursanteMayorNota);
+	document.write("<br> El nombre recursante con mayor nota es " + recursanteMayorNota);
 
-		document.write("<br> El nombre del que No es recursante y tiene  la menor nota es " + nombreMenorNota)
-
-
-		
-		
+	document.write("<br> El nombre del que No es recursante y tiene  la menor nota es " + nombreMenorNota)
 
 
 
@@ -213,11 +200,183 @@ function mostrar()
 
 
 
+/*
+	var respuesta;
+	var division;
+	var nombreIngresado;
+	var legajoIngresado;
+	var recursante;
+	var nota;
+	var contadorDivisionA;
+	var contadorDivisionB;
+	var contadorDivisionC;
+	var nombreRecurMayorNota;
+	var nombreNoRecurMenorNota;
+	var bandera;
+	var menorNota;
+	var mayorNota;
+	var divsionMasAspirantes;
+
+	bandera = "Primer";
+
+	respuesta = "si";
+
+	contadorDivisionA = 0;
+	contadorDivisionB = 0;
+	contadorDivisionC = 0;
+
+	while (respuesta == "si") {
+		division = prompt("Ingrese su division");
+		division = division.toLowerCase();
+
+		while (division != "a" && division != "b" && division != "c") {
+			division = prompt("Revise: solo se permite division A,B y C, ingrese su division");
+			division = division.toLowerCase();
+		}
+
+		nombreIngresado = prompt("Ingrese su nombre");
+
+		while (nombreIngresado == '') {
+			nombreIngresado = prompt("Revise: campo de nombre obligatorio");
+		}
+
+		legajoIngresado = prompt("Ingrese el numero de legajo");
+		legajoIngresado = parseInt(legajoIngresado);
+
+		while (isNaN(legajoIngresado)) {
+			legajoIngresado = prompt("Ingrese el numero de legajo");
+			legajoIngresado = parseInt(legajoIngresado);
+		}
+
+		while (legajoIngresado < 1 || legajoIngresado > 10000) {
+			legajoIngresado = prompt("ERROR, ingrese un numero valido de legajo");
+			legajoIngresado = parseInt(legajoIngresado);
+		}
+
+		recursante = prompt("Usted es recursante?");
+		recursante = recursante.toLowerCase();
+
+		while (recursante != "si" && recursante != "no") {
+			recursante = prompt("ERROR, solo puede responder si o no. Usted es recursante?");
+			recursante = recursante.toLowerCase();
+		}
+
+		nota = prompt("Ingrese su nota");
+		nota = parseInt(nota);
+
+		while (isNaN(nota)) {
+			nota = prompt("Ingrese un numero de nota");
+			nota = parseInt(nota);
+		}
+
+		while (nota <= 0 || nota > 10) {
+			nota = prompt("ERROR, ingrese un numero valido de nota");
+			nota = parseInt(nota);
+		}
+
+
+
+		if(bandera == "Primer")
+		{
+			mayorNota = nota;
+
+
+			menorNota = nota;
+
+			bandera = "Ya no"
+
+		}
+		else
+		{
+			if(nota > mayorNota)
+			{
+				mayorNota = nota;
+				if(recursante == "si")
+				{
+					nombreRecurMayorNota = nombreAlumno;
+				}
+			}
+			else
+			{
+				if(nota < menorNota)
+				{
+					menorNota = nota;
+					if(recursante == "no")
+					{
+						nombreNoRecurMenorNota = nombreAlumno;
+					}
+				}
+			}
+		}
+
+		switch (division) {
+			case "a":
+				contadorDivisionA = contadorDivisionA + 1;
+				break;
+			case "b":
+				contadorDivisionB = contadorDivisionB + 1;
+				break;
+			case "c":
+				contadorDivisionC = contadorDivisionC + 1;
+				break;
+		}
+
+		respuesta = prompt("Desea continuar?");
+		respuesta = respuesta.toLowerCase();
+
+
+
+
+	}
+
+	if (contadorDivisionA > contadorDivisionB && contadorDivisionA > contadorDivisionC) {
+		divsionMasAspirantes = "Division A"
+	}
+	else {
+		if (contadorDivisionB > contadorDivisionA && contadorDivisionB > contadorDivisionC) {
+			divsionMasAspirantes = "Division B"
+		}
+		else {
+			if (contadorDivisionC > contadorDivisionA && contadorDivisionC > contadorDivisionB) {
+				divsionMasAspirantes = "Division C"
+			}
+		}
+
+	}
+
+	document.write("La división con más aspirantes es " + contadorMasAspirantes);
+
+	document.write("<br> El nombre recursante con mayor nota es " + nombreRecurMayorNota);
+
+	document.write("<br> El nombre del que no es recursante y tiene la menor nota es " + nombreNoRecurMenorNota);
 
 
 
 
 
+*/
+
+/*		if (bandera == "Primer") {
+			mayorNota = nota;
+
+			menorNota = nota;
+
+			bandera = "Ya no";
+		}
+
+
+		if (recursante == "si") {
+			if (nota > mayorNota) {
+				nombreRecurMayorNota = nombreIngresado;
+			}
+		}
+		else {
+			if (recursante == "no") {
+				if (nota < menorNota) {
+					nombreNoRecurMenorNota = nombreIngresado
+				}
+			}
+		}*/
 
 
 
